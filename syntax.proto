@@ -1,0 +1,51 @@
+syntax ="proto3";
+
+//import "golang/date.proto";
+
+
+message Person{
+    int32 age =1;
+    string first_name=2;
+    string last_name=3;
+    bytes small_picture=4;
+    bool is_profile_verified=5;
+    float height=6;
+
+    //for repeated fields types
+    repeated string phone_numbers=7;
+    
+    //enum types- first starts with 0, 
+    enum eyeColor {
+        UNKNOWN_EYE_COLOR= 0;
+        EYE_BLACK=1;
+        EYE_BLUE=2;
+        EYE_BROWN=3;
+    }
+    //eyeColor is a enum defined anove hence could be referred by the name itself.
+    eyeColor eye_color=8;
+
+    //including Date in person
+    Date birthday=9;
+
+    //Nested messages
+    message Address{
+        string address_line_1=1;
+        string address_line_2=2;
+        string zip_code=3;
+        string city=4;
+        string country=5;
+    }
+    repeated Address addresses=10;
+
+}
+
+//Defining multiple messages in same .proto file
+message Date{
+    int32 year=1;
+    int32 month=2;
+    int32 day=3;
+}
+
+//for packages a simple example
+//package person;
+//my.date.Date birthday =9;
